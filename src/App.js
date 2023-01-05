@@ -1,6 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import TodoList from "./TodoList";
 
+import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
+import Grid from '@mui/material/Grid'
+
 const MAX = 10e6;
 const LOCAL_STORAGE_KEY = 'todosApp.todo'
 const uuidv4 = function(){
@@ -9,7 +13,7 @@ const uuidv4 = function(){
 
 function App() {
   const [todos, setTodos] = useState([])
-  const todoNameRef = useRef()
+  const inputTodoRef = useRef()
 
   useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
@@ -34,14 +38,15 @@ function App() {
   }
   
   function handleAddTodo(e){
-      const name = todoNameRef.current.value
-      if (name === "" || name === NaN) return
+      console.log("Clicked..!")
+      const name = inputTodoRef.current.value
+      if (name === "" || name === NaN || name === undefined) return
       setTodos(
         prevTodos => {
           return [...prevTodos, {id:uuidv4(), name: name, complete:false}]
         }
       )
-      todoNameRef.current.value = ""
+      inputTodoRef.current.value = ""
   }
   function toggleAllTodo(){
     todos.map(todo => toggleTodo(todo.id))
@@ -60,10 +65,31 @@ function App() {
   return (
     <> 
       <TodoList todos={todos} toggleTodo={toggleTodo}/>
-      <input ref={todoNameRef} type="text"/>
-      <button onClick={handleAddTodo}>Add Todo</button>
-      <button onClick={toggleAllTodo}>Toggle Todo</button>
-      <button onClick={clearCompleteTodo}>Clear Complete</button>
+      
+      <Grid container spacing={2}>
+        <Grid item xs={4}>
+          <TextField id="outlined-basic" label="Task" variant="outlined" 
+                inputRef={inputTodoRef} type="text" 
+                inputProps={
+                  {
+                    style: {height: "9px"}
+                  }
+                }/>
+        </Grid>
+        <Grid item xs={4}>
+          <Button variant="contained" onClick={handleAddTodo}>Add Todo</Button>
+        </Grid>
+      </Grid>
+
+      <Grid container spacing={2}>
+        <Grid item xs={4}>
+          <Button variant="contained" onClick={toggleAllTodo}>Toggle Todo</Button>  
+        </Grid>
+        <Grid item xs={4}>
+          <Button variant="contained" onClick={clearCompleteTodo}>Clear Complete</Button>
+        </Grid>
+      </Grid>
+      
       <div> {countTodos()} left todos</div>
     </>
   );
