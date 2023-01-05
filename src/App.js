@@ -1,14 +1,48 @@
 import React, { useState, useRef, useEffect } from "react";
-import TodoList from "./TodoList";
-
+import TodoList from "./componets/TodoList";
+import axios from "axios"
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Grid from '@mui/material/Grid'
 
 const MAX = 10e6;
 const LOCAL_STORAGE_KEY = 'todosApp.todo'
+
+
+const POST_URL = "http://127.0.0.1:8000/api/posts/"
+const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjczMTA0Nzk2LCJpYXQiOjE2NzI5MjgzOTYsImp0aSI6ImI2OGUxNjE3NDUwMDQ2MWM5MTk5YTc1MTdmOTZkZDkxIiwidXNlcl9pZCI6MX0._h1NOa3xS8mDeQRAkjzU0ctpe7TGDA-DSI2IDvDTOoc"
+
+
 const uuidv4 = function(){
   return Math.floor(Math.random() * MAX)
+}
+
+
+function FetchComponent(){
+  const [data, setData] = useState(null);
+
+  const handleClick = async () => {
+    let headers = new Headers();
+    headers.append("Authorization", `Bearer ${TOKEN}`)
+    const response = await axios.get(POST_URL, {
+      mode: 'no-cors',
+    });
+    const data = await response.data;
+    console.log(data, "DATA")
+    setData(data)
+  }
+
+  return (
+    <div>
+      <Button variant="contained"  onClick={handleClick}>Get Data</Button>
+      {data ? (
+        <div>{data.message}</div>
+      ) : (
+        <div>No data</div>
+      )}
+    </div>
+
+  );
 }
 
 function App() {
@@ -56,6 +90,7 @@ function App() {
     const newTodos = todos.filter(todo => !todo.complete)
     console.log(newTodos)
     setTodos(newTodos)
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newTodos))
   }
 
   function countTodos(){
@@ -91,6 +126,7 @@ function App() {
       </Grid>
       
       <div> {countTodos()} left todos</div>
+      <FetchComponent></FetchComponent>
     </>
   );
 }

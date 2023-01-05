@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import Todo from './Todo'
-
 export default function TodoList({ todos, toggleTodo }) {
   return (
       todos.map(todo => {
