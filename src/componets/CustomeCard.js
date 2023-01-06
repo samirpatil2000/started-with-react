@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 
-export default function Post({post}) {
+export default function CustomeCard({post}) {
   return (
     <div>
         <Card sx={{ maxWidth: 345 }}>
