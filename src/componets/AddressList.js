@@ -1,19 +1,19 @@
 import React from 'react'
-import Post from './Post'
+import Address from './Address'
 import Grid from '@mui/material/Grid'
 
 const XS = 6;
 const MD = 4;
 const LG = 3;
 
-export default function Posts({ posts }) {
+export default function AddressList({ addresses }) {
   return (
     <Grid container spacing={1}>
       {
-        posts.map(post => {
+        addresses.map(address => {
           return(
-            <Grid item key={post.id} xs={XS} md={MD} lg={LG}> 
-              <Post post={post}/> 
+            <Grid item key={ address.id } xs={XS} md={MD} lg={LG}> 
+              <Address address={ address }/> 
             </Grid>
           )
         })

@@ -1,5 +1,5 @@
 import React from 'react'
-import Layout from '../componets/Post'
+import Layout from '../componets/AddressList'
 import TodoRouter from './Todo'
 
 export default function Home() {
