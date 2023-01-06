@@ -7,6 +7,7 @@ import Layout from "./componets/AddressList";
 
 import HomePage from "./pages/Home";
 import PostPage from "./pages/Post";
+import AddAddressFormPage from './form/AddAddress'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route exact path="/todos" element={<HomePage/>}></Route>
         <Route exact path="/" element={<PostPage/>}></Route>
+        <Route exact path="/add-address" element={<AddAddressFormPage/>}></Route>
         {/* <Route exact path="/" element={<Post/>}></Route> */}
       </Routes>
     </Router>

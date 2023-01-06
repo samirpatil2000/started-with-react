@@ -1,6 +1,7 @@
 import React from 'react'
 import Address from './Address'
 import Grid from '@mui/material/Grid'
+import AddAddressButton from './button/AddAddress';
 
 const XS = 6;
 const MD = 4;
@@ -18,6 +19,10 @@ export default function AddressList({ addresses }) {
           )
         })
       }
+      <Grid item xs={XS} md={MD} lg={LG}> 
+            <AddAddressButton/>
+      </Grid>
+      
     </Grid>
   )
 }
