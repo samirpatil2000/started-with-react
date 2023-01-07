@@ -22,7 +22,6 @@ export default function AddressList({ addresses }) {
       <Grid item xs={XS} md={MD} lg={LG}> 
             <AddAddressButton/>
       </Grid>
-      
     </Grid>
   )
 }

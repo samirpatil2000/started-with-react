@@ -1,4 +1,4 @@
-import React from 'react'
+import {React, useRef} from 'react'
 import { Form } from 'react-router-dom'
 import {Box, Button, Grid, TextField, Typography} from '@mui/material'
 
@@ -15,23 +15,35 @@ const fieldStyle = {
     marginRight:"2em"
 }
 export default function AddAddress() {
-  return (
-    <Grid container justify='center' alignItems="center" direction='column' >
-        <Grid item> 
-            <Typography variant='h5' style={{ marginBottom: "1em" }} color="primary">Add New Address</Typography>
-        </Grid>
-        
-        <Grid item> 
-            <AddressForm/>
-        </Grid>
-        
-        <Grid item>
-            <Button variant="contained" style={{marginTop: 10}}>Submit</Button>
-        </Grid>
-        
-    </Grid>
-  )
+    const name = useRef()
+
+
+
+    // function handleSubmit(){
+    //     const name = 
+    // }
+    return (
+        <Form>
+            <Grid container justify='center' alignItems="center" direction='column' >
+                <Grid item> 
+                    <Typography variant='h5' style={{ marginBottom: "1em" }} color="primary">Add New Address</Typography>
+                </Grid>
+                
+                <Grid item> 
+                    <AddressForm/>
+                </Grid>
+                
+                <Grid item>
+                    <Button variant="contained" style={{marginTop: 10}}>Submit</Button>
+                </Grid>
+                
+            </Grid>
+        </Form>
+    )
 }
+
+
+
 
 const AddressForm = () => {
     return (

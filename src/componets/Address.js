@@ -12,10 +12,9 @@ export default function Address({address}) {
     function handleClick(){
         console.log(address.name)
         console.log("Clicked..!")
+        console.log()
     }
-    function splitAddress(){
-
-    }
+    const addresses = address.address_line_1.split(',')
     return (
         <div>
             <Card sx={{ maxWidth: 345 }}>
@@ -24,18 +23,19 @@ export default function Address({address}) {
                         <Typography gutterBottom variant="h6" component="div">
                             {address.name}
                         </Typography>
-                        <Typography  variant="body2" color="text.secondary" >
-                            {address.address_line_1.split(' ').map((word, index) => {
-                                return index > 0 && index % 5 == 0? [word, <br/>]: word;
-                            })}
-                          
-                            
-                        </Typography>
+                        {/* <Typography  variant="body2" color="text.secondary" >
+                                {address.address_line_1.split(',')}
+                        </Typography> */}
+                        
+                        {address.address_line_1.split(',').map(word => {
+                            return(
+                                <Typography  variant="body2" color="text.secondary" >
+                                    {word},
+                                </Typography>
+                            )
+                        })}
                         <Typography variant="body2" color="text.secondary">
-                            {address.city}, {address.state}, {address.zipcode}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            {address.pincode}, india
+                            {address.city}, {address.state}, {address.zipcode}, India
                         </Typography>
                     </CardContent>
                     <CardActions>
@@ -44,7 +44,6 @@ export default function Address({address}) {
                     </CardActions>
                 </CardActionArea>
             </Card>
-            
         </div>
     )
 }

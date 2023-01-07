@@ -17,15 +17,17 @@ export default function AddAddress() {
     }
     return (
         <div>
-            <Card sx={{ maxWidth: 345 }} alignItems='center'>
+            <Card sx={{ maxWidth: 345 }} alignItems='center' direction='column' justify='center'>
                 <CardActionArea onClick={handleClick}>
                     <AddIcon style={
                         {
                             width: 60,
                             height: 60,
+                            display: 'flex',
+                            justifyContent: 'center',
                             alignItems: 'center'
-                        }}
-                        />
+                        }
+                    }/>
                     <Typography variant='h5'>Add Address</Typography>
                 </CardActionArea>
             </Card>
