@@ -15,16 +15,33 @@ const fieldStyle = {
     marginRight:"2em"
 }
 export default function AddAddress() {
-    const name = useRef()
+    // const name = useRef()
 
 
 
-    // function handleSubmit(){
-    //     const name = 
-    // }
+    // // function handleSubmit(){
+    // //     const name = 
+    // // }
     return (
-        <Form>
-            <Grid container justify='center' alignItems="center" direction='column' >
+        // <Form>
+        //     <Grid container justify='center' alignItems="center" direction='column' >
+        //         <Grid item> 
+        //             <Typography variant='h5' style={{ marginBottom: "1em" }} color="primary">Add New Address</Typography>
+        //         </Grid>
+                
+        //         <Grid item> 
+        //             <AddressForm/>
+        //         </Grid>
+                
+        //         <Grid item>
+        //             <Button variant="contained" style={{marginTop: 10}}>Submit</Button>
+        //         </Grid>
+                
+        //     </Grid>
+        // </Form>
+        <>
+        <div>
+                <Grid container justify='center' alignItems="center" direction='column' >
                 <Grid item> 
                     <Typography variant='h5' style={{ marginBottom: "1em" }} color="primary">Add New Address</Typography>
                 </Grid>
@@ -38,7 +55,8 @@ export default function AddAddress() {
                 </Grid>
                 
             </Grid>
-        </Form>
+        </div>
+        </>
     )
 }
 
