@@ -16,11 +16,23 @@ export default function AddressBookEntry({ address }) {
     console.log("Address Click", address.name)
   }
 
-  
+  const classes = {
+    root: {
+      flexGrow: 1,
+    },
+    card: {
+      width: '100%',
+      height: '100%',
+    },
+    cardContent: {
+      display: 'flex',
+      flexDirection: 'column',
+    }
+  }
 
   return (
       <div>
-        <Card sx={{ maxWidth: 300, minWidth: 160}} onClick={handleClick}>
+        <Card className={classes.card} sx={{ backgroundColor: "skyblue"}} onClick={handleClick}>
           <CardActionArea>
             <CardContent>
               <Typography gutterBottom variant="h6" component="div">

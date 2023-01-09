@@ -3,7 +3,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Button from "@mui/material/Button";
-import { Box, Card, Grid } from "@mui/material";
+import { Box, Card, Grid, makeStyles } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
 import CardActions from '@mui/material/CardActions';
@@ -14,7 +14,7 @@ import { CardActionArea } from '@mui/material';
 import axios from "axios"
 import AddressBookEntry from "./AddressBookEntry";
 import AddressList from "../componets/AddressList";
-
+import { borderRadius } from "@mui/system";
 
 
 
@@ -25,6 +25,14 @@ const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNz
 
 
 
+const useStyles = {
+  gridContainer: {
+    paddingLeft: '200px',
+    paddingRight: '20px'
+  }
+}
+
+
 
 export default function AddressBook({
   selectedAddressId,
@@ -33,8 +41,7 @@ export default function AddressBook({
   const [value, setValue] = useState(selectedAddressId);
 
 
-  const [data, setData] = useState(null);
-  
+  const [data, setData] = useState(null);  
   
   const handleClick = async () => {
     let headers = new Headers();
@@ -59,84 +66,80 @@ export default function AddressBook({
     console.log("New Address")
   }
 
+  
+
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        backgroundColor: "white",
-        
-      }}
-    >
-      <form>
-        <FormControl
-          sx={{
-            width: { sm: "95vh" },
-            height: { sm: "72vh" },
-            p: 1,
-            justifyContent: "space-around",
-          }}
-          variant="standard"
-        >
-          <Box sx={{border:1, borderRadius: 4}}>
-            <FormLabel
+    <div>
+      <Grid container  alignItems='center' direction='column' sx={{
+        border: 1,
+        borderRadius: 2
+      }}>
+        <Grid item>
+          <FormLabel
               sx={{
                 color: "black",
                 fontSize: "0.9rem",
                 fontWeight: "bold",
-                margin: "10px"
+                margin: "10px",
               }}
-              id="recent-address"
-            >
+              id="recent-address">
               Most recently used Addresses
-            </FormLabel>
-            <Grid
-              container spacing={0.5} justify='center' alignItems="center" 
-            >
-              {data != null &&
-                data.data.map((address) => {
-                  return (
-                    <Grid margin={1} item key={address.id} xs={12} sm={4} md={3} lg={3}>
-                      <AddressBookEntry address={address} />
-                    </Grid>
-                  );
-                })}
-                <Grid margin={1} item key="addressButton" xs={12} sm={4} md={3} lg={3}>
-                      <AddNewAddressButton></AddNewAddressButton>
-                </Grid>
-            </Grid>
-            <Button
-              sx={{
-                "& MuiTypography-root": { fontSize: "0.8rem" },
-                width: "fit-content",
-              }}
-              variant="text"
-              onClick={addNewAddressSelected}
-            >
-              <AddIcon />
-              Add a new Address
-            </Button>
+          </FormLabel>
+        </Grid>
+        <Grid item xs={3}>
+          <Grid 
+            container spacing={0.5} 
+            justifyContent='center' 
+            style={{
+              }}>
+            {data != null &&
+              data.data.map((address) => {
+                return (
+                  <Grid margin={1} item key={address.id} xs={12} sm={4} md={3} lg={3}>
+                    <AddressBookEntry address={address} />
+                  </Grid>
+                );
+              })}
+              <Grid margin={1} item key="addressButton" xs={12} sm={4} md={3} lg={3}>
+                    <AddNewAddressButton></AddNewAddressButton>
+              </Grid>
+          </Grid>
+        </Grid>
+        <Grid item>
+           <Button
+            sx={{
+              "& MuiTypography-root": { fontSize: "0.8rem" },
+              width: "fit-content",
+            }}
+            variant="text"
+            onClick={addNewAddressSelected}
+          >
+            <AddIcon />
+            Add a new Address
+          </Button>
+        </Grid>
+         <Grid item>
+           <Box sx={{ textAlign: "center" }}>
+               <Button
+                 sx={{
+                  m: 1,
+                  p: 1,
+                  width: { xs: "90vw", sm: "50ch" },
+                  color: "white",
+                  backgroundColor: "#000000",
+                  "&:hover": { backgroundColor: "#000000" },
+                }}
+                variant="contained"
+                onClick={handleClick}
+              >
+                Use this address 
+              </Button>
           </Box>
-          <Box sx={{ textAlign: "center" }}>
-            <Button
-              sx={{
-                m: 1,
-                p: 1,
-                width: { xs: "90vw", sm: "50ch" },
-                color: "white",
-                backgroundColor: "#000000",
-                "&:hover": { backgroundColor: "#000000" },
-              }}
-              // type="submit"
-              variant="contained"
-              onClick={handleClick}
-            >
-              Use this address 
-            </Button>
-          </Box>
-        </FormControl>
-      </form>
-    </Box>
+        </Grid>
+      </Grid>
+      <ResponsiveCardGrid/>
+    </div>
+          
   );
 }
 
@@ -149,7 +152,6 @@ function AddNewAddressButton() {
   const handleClick = () => {
     console.log("Add Button Click")
   }
-
   
 
   return (
@@ -171,5 +173,41 @@ function AddNewAddressButton() {
           </CardActionArea>
         </Card>
       </div>
+      
+  );
+}
+
+
+function ResponsiveCardGrid() {
+  const classes = {
+    root: {
+      flexGrow: 1,
+    },
+    card: {
+      width: '100%',
+      height: '100%',
+    },
+    cardContent: {
+      display: 'flex',
+      flexDirection: 'column',
+    }
+  }
+
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={3}>
+        {
+          [1, 2, 3, 4].map(() => {
+            return (<Grid item xs={12} sm={4}>
+              <Card className={classes.card}>
+                <CardContent className={classes.cardContent}>
+                  Card 1, Card 1, Card 1, Card 1, Card 1, Card 1
+                </CardContent>
+              </Card>
+            </Grid>)
+          })
+        }
+      </Grid>
+    </div>
   );
 }

@@ -17,7 +17,7 @@ export default function Address({address}) {
     const addresses = address.address_line_1.split(',')
     return (
         <div>
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ maxWidth: 345, backgroundColor: "skyblue" }}>
                 <CardActionArea onClick={handleClick}>
                     <CardContent>
                         <Typography gutterBottom variant="h6" component="div">
