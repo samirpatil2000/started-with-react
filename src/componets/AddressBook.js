@@ -16,7 +16,7 @@ import AddressBookEntry from "./AddressBookEntry";
 import AddressList from "../componets/AddressList";
 import { borderRadius } from "@mui/system";
 
-
+import "../style/styles.css";
 
 const END_POINT = "https://myfirstonlineproject.pythonanywhere.com"
 const POST_URL = `${END_POINT}/api/address/`
@@ -70,10 +70,13 @@ export default function AddressBook({
 
   return (
     <div>
-      <Grid container  alignItems='center' direction='column' sx={{
-        border: 1,
-        borderRadius: 2
-      }}>
+      <Grid container  alignItems='center'
+        direction='column' 
+        sx={{
+          border: 1,
+          borderRadius: 2
+        }}
+      >
         <Grid item>
           <FormLabel
               sx={{
@@ -86,37 +89,43 @@ export default function AddressBook({
               Most recently used Addresses
           </FormLabel>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={3} >
           <Grid 
             container spacing={0.5} 
             justifyContent='center' 
-            style={{
-              }}>
-            {data != null &&
-              data.data.map((address) => {
-                return (
-                  <Grid margin={1} item key={address.id} xs={12} sm={4} md={3} lg={3}>
-                    <AddressBookEntry address={address} />
-                  </Grid>
-                );
-              })}
-              <Grid margin={1} item key="addressButton" xs={12} sm={4} md={3} lg={3}>
-                    <AddNewAddressButton></AddNewAddressButton>
-              </Grid>
-          </Grid>
-        </Grid>
-        <Grid item>
-           <Button
+            // flexGrow={1}
+            // overflow='auto'
             sx={{
-              "& MuiTypography-root": { fontSize: "0.8rem" },
-              width: "fit-content",
-            }}
-            variant="text"
-            onClick={addNewAddressSelected}
-          >
-            <AddIcon />
-            Add a new Address
-          </Button>
+              flexGrow: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              minHeight: '100%',
+            }}>
+              <Grid item sx={{
+                backgroundColor: "blue", 
+                flexGrow: 1,
+                overflow: 'auto',
+                minHeight: '100%',
+              }}>
+                <Grid container justifyContent='center' >
+                  {data != null &&
+                    [...data.data, ...data.data].map((address) => {
+                      return (
+                        <Grid margin={1} item key={address.id} xs={6} >
+                          {/* <AddressBookEntry address={address} /> */}
+                          {/* <AddNewAddressButton></AddNewAddressButton> */}
+                          {/* <CardAction/> */}
+                          <CustomCard/>
+                        </Grid>   
+                      );
+                  })}
+                  {/* <Grid margin={1} item key="addressButton" xs={12} sm={4} md={3} lg={3}>
+                        <AddNewAddressButton></AddNewAddressButton>
+                  </Grid> */}
+                </Grid>
+              </Grid>
+            
+          </Grid>
         </Grid>
          <Grid item>
            <Box sx={{ textAlign: "center" }}>
@@ -132,16 +141,18 @@ export default function AddressBook({
                 variant="contained"
                 onClick={handleClick}
               >
-                Use this address 
+                Load addresses
               </Button>
           </Box>
         </Grid>
       </Grid>
-      <ResponsiveCardGrid/>
+      <h1>Samir</h1>
+      {/* <ResponsiveCardGrid/> */}
     </div>
           
   );
 }
+
 
 
 function AddNewAddressButton() {
@@ -197,7 +208,7 @@ function ResponsiveCardGrid() {
     <div className={classes.root}>
       <Grid container spacing={3}>
         {
-          [1, 2, 3, 4].map(() => {
+          [].map(() => {
             return (<Grid item xs={12} sm={4}>
               <Card className={classes.card}>
                 <CardContent className={classes.cardContent}>
@@ -209,5 +220,40 @@ function ResponsiveCardGrid() {
         }
       </Grid>
     </div>
+  );
+}
+
+
+
+function CustomCard(){
+  return (
+    <Card elevation={1} sx={{ maxWidth: 345 }}>
+      <CardActionArea>
+        <CardContent>
+          <Grid container>
+            <Grid item>
+              <Typography gutterBottom variant="h5" component="div">
+                Lizard
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="body2" color="text.secondary">
+                Lizards are a widespread group of squamate reptiles, with over 6,000
+                species, ranging across all continents except Antarctica
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="body2" color="text.secondary">
+                Lizards are a widespread group of squamate reptiles, with over 6,000
+                species, ranging across all continents except Antarctica
+              </Typography>
+            </Grid>
+            <Grid marginTop={1}>
+              <Button variant="outlined" size="small"  >Edit</Button>
+            </Grid>
+          </Grid>
+        </CardContent>
+      </CardActionArea>
+    </Card>
   );
 }
