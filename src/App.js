@@ -17,8 +17,17 @@ import CoreServiceState from "./context/CoreServiceState";
 
 
 function App() {
+  console.log("Hello Samir")
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    console.log("renders: ", count);
+  }, [count])
   return (
     <CoreServiceState>
+      <div>
+        <button onClick={() => setCount(count + 1)}>increment</button>
+        <div>count: {count}</div>
+      </div>
       <Router>
         <Routes>
           <Route exact path="/todos" element={<HomePage/>}></Route>

@@ -13,21 +13,19 @@ export default function Reducerhook() {
         } else if (action.type === 'DECREMENT'){
             state -= 1;
         } else if (action.type === 'CORE_SERVICE'){
-            coreServiceContextObject.update()
-            console.log(state.payload, "is Payload")
+            coreServiceContextObject.globalDispatch({type: "ADD"})
         }
         return state;
     }
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    
     return (
         <div>
-            <p>{"Current State = " + state}, {coreServiceContextObject.state.name} {coreServiceContextObject.state.payload}</p>
+            <p>{"Current State = " + state}, {coreServiceContextObject.state.name} {coreServiceContextObject.state.name2}</p>
             <div>
                 <button onClick={() => dispatch({type: "INCREMENT"})}>Inc</button>
                 <button onClick={() => dispatch({type: "DECREMENT"})}>Dec</button>
-                <button onClick={() => dispatch({type: "CORE_SERVICE", payload: {id: 1, payload : "Payload"}})}>Core Service</button>
+                <button onClick={() => dispatch({type: "CORE_SERVICE"})}>Core Service</button>
             </div>
         </div>
     )
