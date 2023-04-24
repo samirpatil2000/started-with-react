@@ -13,6 +13,7 @@ import ScrollingCard from "./componets/ScrollingCard";
 import Reducerhook from "./componets/Reducerhook";
 import UseState from "./componets/UseState";
 import CoreServiceState from "./context/CoreServiceState";
+import CashFreeInt from "./componets/CashFreeInt";
 
 
 
@@ -24,14 +25,11 @@ function App() {
   }, [count])
   return (
     <CoreServiceState>
-      <div>
-        <button onClick={() => setCount(count + 1)}>increment</button>
-        <div>count: {count}</div>
-      </div>
       <Router>
         <Routes>
           <Route exact path="/todos" element={<HomePage/>}></Route>
           <Route exact path="/" element={<PostPage/>}></Route>
+          <Route exact path="/cashfree" element={<CashFreeInt/>}></Route>
           <Route exact path="/add-address" element={<AddAddressFormPage/>}></Route>
           <Route exact path="/address" element={<Addresses/>}></Route>
           <Route exact path="/scroll" element={<ScrollingCard/>}></Route>
