@@ -14,6 +14,8 @@ import Reducerhook from "./componets/Reducerhook";
 import UseState from "./componets/UseState";
 import CoreServiceState from "./context/CoreServiceState";
 import CashFreeInt from "./componets/CashFreeInt";
+import Payment from "./componets/NewCashFree";
+import CashFreeJSV3 from "./componets/CashFreeJSV3";
 
 
 
@@ -30,6 +32,7 @@ function App() {
           <Route exact path="/todos" element={<HomePage/>}></Route>
           <Route exact path="/" element={<PostPage/>}></Route>
           <Route exact path="/cashfree" element={<CashFreeInt/>}></Route>
+          <Route exact path="/cashfree-new" element={<CashFreeJSV3/>}></Route>
           <Route exact path="/add-address" element={<AddAddressFormPage/>}></Route>
           <Route exact path="/address" element={<Addresses/>}></Route>
           <Route exact path="/scroll" element={<ScrollingCard/>}></Route>

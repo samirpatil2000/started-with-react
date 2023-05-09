@@ -3,7 +3,7 @@ import { cashfreeSandbox, Cashfree } from 'cashfree-dropjs';
 import { Button } from '@mui/material';
 
 
-const CASHFREE_COMPONETS = [ "order-details", "card", "app", "upi", "netbanking", "paylater", "creditcardemi", "debitcardemi", "cardlessemi",                                      ]
+const CASHFREE_COMPONETS = [ "order-details", "card", "app", "upi", "netbanking", "paylater", "creditcardemi", "debitcardemi", "cardlessemi"]
 
 export default function CashFreeInt() {
   const dropinContainer = useRef(null);
